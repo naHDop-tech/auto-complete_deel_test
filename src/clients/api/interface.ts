@@ -1,0 +1,36 @@
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
+
+export interface IApiClient {
+    patch<T = any, R = AxiosResponse<T>>(
+        url: string,
+        data?: T,
+        config?: AxiosRequestConfig
+    ): Promise<R>
+    post<T = any, R = AxiosResponse<T>>(
+        url: string,
+        data?: T,
+        config?: AxiosRequestConfig
+    ): Promise<R>
+    delete<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>
+    get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>
+}
+
+export interface GenericMSResponse<T> {
+    code: string
+    message: string
+    timestamp: string
+    data: T | null
+    error: MSError | null
+}
+
+interface MSError {
+    message: string
+    code: string
+}
+
+export enum StatusCode {
+    Unauthorized = 401,
+    Forbidden = 403,
+    TooManyRequests = 429,
+    InternalServerError = 500,
+}
