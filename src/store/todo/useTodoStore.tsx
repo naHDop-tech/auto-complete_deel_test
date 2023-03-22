@@ -4,16 +4,16 @@ import { ITodosContext } from "@root/contexts/todos";
 import { ITodo } from "@store/todo/interface";
 
 export function useTodoStore(): ITodosContext {
-    const [defaultDotos, setDefaultTodos] = useState<ITodo[]>([])
-    const [chosenTodo, setChosenTodo] = useState<ITodo | null>(null)
-    const [searchStr, setSearchStr] = useState<string>('')
+    const [todos, setTodos] = useState<ITodo[]>([])
+    const [todo, setTodo] = useState<ITodo | null>(null)
+    const [searchString, setSearchString] = useState<string>('')
 
     return {
-        setTodo: setChosenTodo,
-        chosenTodo: chosenTodo,
-        todos: defaultDotos,
-        filteredStr: searchStr,
-        setFilteredTodos: setDefaultTodos,
-        setSearchStr: setSearchStr
+        setTodo,
+        todo,
+        todos,
+        searchString,
+        setTodos,
+        setSearchString,
     }
 }

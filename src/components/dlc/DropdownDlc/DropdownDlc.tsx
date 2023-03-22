@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Dropdown, GenericDropdownItemProps } from '../../ui/Dropdown'
 import { InputDlc } from "../InputDlc";
 import { TodosContext } from "../../../contexts/todos";
-import {ITodo} from "@store/todo/interface";
+import { ITodo } from "../../../store/todo/interface";
 
 function Component(props: GenericDropdownItemProps) {
     const { title, onClick } = props
@@ -14,10 +14,10 @@ function Component(props: GenericDropdownItemProps) {
     )
 }
 
-export function AutoCompleteDlc() {
+export function DropdownDlc() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const parentRef = useRef<HTMLDivElement>(null)
-    const { todos, setTodo, chosenTodo } = useContext(TodosContext)
+    const { todos, setTodo } = useContext(TodosContext)
 
     const onClickHandler = () => {
         if (todos.length) {
@@ -30,8 +30,6 @@ export function AutoCompleteDlc() {
         // because it has closed by event listener
         setTodo(todo)
     }
-
-    console.log(chosenTodo)
 
     // Outside click
     useEffect(() => {

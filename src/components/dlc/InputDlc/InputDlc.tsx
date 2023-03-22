@@ -1,4 +1,4 @@
-import { useContext, useEffect} from "react";
+import { ChangeEvent, useContext, useEffect } from "react";
 
 import { Input } from "../../ui/Input";
 import { apiClient } from "../../../clients/api";
@@ -7,18 +7,22 @@ import { GenericMSResponse } from "../../../clients/api/interface";
 import { TodosContext } from "../../../contexts/todos";
 
 export function InputDlc() {
-    const { setFilteredTodos } = useContext(TodosContext)
+    const { setTodos,  } = useContext(TodosContext)
 
     useEffect(() => {
         (async() => {
             const todos = await apiClient.get<ITodo, GenericMSResponse<ITodo[]>>('todos')
             if (todos.data?.length) {
-                setFilteredTodos(todos.data)
+                setTodos(todos.data)
             }
         })()
     }, [])
+    
+    const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value)
+    }
 
     return (
-        <Input />
+        <Input onChange={changeHandler} />
     );
 }

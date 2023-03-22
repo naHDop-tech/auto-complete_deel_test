@@ -1,8 +1,8 @@
-import {HTMLAttributes, PropsWithChildren, useState, useEffect, useRef, RefObject} from 'react'
+import { HTMLAttributes, PropsWithChildren, useState, useEffect, RefObject } from 'react'
 
 import s from './DropdownStyle.module.css'
 import { GenericDropdownItemProps } from './types'
-import {ITodo} from "@store/todo/interface";
+import { ITodo } from "@store/todo/interface";
 
 const styles = s as unknown as IDropdownStyle
 
@@ -39,7 +39,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>) {
         if(parentRef.current?.clientWidth){
             setWidth(parentRef.current.offsetWidth)
         }
-    }, [parentRef.current?.clientWidth]);
+    }, [parentRef, parentRef.current?.clientWidth]);
     
     let bosClasses = styles.Box
     

@@ -3,7 +3,7 @@ import { ICommonStyle } from './components/commin-style-types'
 
 import cs from './components/CommonStyle.module.css'
 
-import { AutoCompleteDlc } from './components/dlc/AutoCompleteDlc'
+import { DropdownDlc } from './components/dlc/DropdownDlc'
 import { TodosProvider } from './contexts/todos'
 import { useTodoStore } from "./store/todo/useTodoStore";
 
@@ -19,7 +19,7 @@ function App() {
                 <div className={commonStyle.Margin24} />
                 <div className="padding-wrapper__32">
                     <div className="input-wrapper__500">
-                        <AutoCompleteDlc />
+                        <DropdownDlc />
                     </div>
                 </div>
             </TodosProvider>

@@ -4,19 +4,19 @@ import { ITodo } from "../../store/todo/interface";
 
 export interface ITodosContext {
     todos: ITodo[]
-    chosenTodo: ITodo | null
-    filteredStr: string
+    todo: ITodo | null
+    searchString: string
     setTodo: (todo: ITodo) => void,
-    setFilteredTodos: (data: ITodo[]) => void
-    setSearchStr: (str: string) => void
+    setTodos: (data: ITodo[]) => void
+    setSearchString: (str: string) => void
 }
 
 export const TodosContext = createContext<ITodosContext>({
     todos: [],
-    filteredStr: '',
-    chosenTodo: null,
-    setFilteredTodos: () => [],
-    setSearchStr: () => '',
+    searchString: '',
+    todo: null,
+    setTodos: () => [],
+    setSearchString: () => '',
     setTodo: () => null,
 })
 export const TodosProvider = TodosContext.Provider
