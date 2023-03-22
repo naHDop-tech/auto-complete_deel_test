@@ -7,7 +7,7 @@ import { GenericMSResponse } from "../../../clients/api/interface";
 import { TodosContext } from "../../../contexts/todos";
 
 export function InputDlc() {
-    const { setTodos,  } = useContext(TodosContext)
+    const { setTodos, setSearchString, searchString } = useContext(TodosContext)
 
     useEffect(() => {
         (async() => {
@@ -19,7 +19,7 @@ export function InputDlc() {
     }, [])
     
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
+        setSearchString(e.target.value)
     }
 
     return (

@@ -4,15 +4,7 @@ import { Dropdown, GenericDropdownItemProps } from '../../ui/Dropdown'
 import { InputDlc } from "../InputDlc";
 import { TodosContext } from "../../../contexts/todos";
 import { ITodo } from "../../../store/todo/interface";
-
-function Component(props: GenericDropdownItemProps) {
-    const { title, onClick } = props
-    return (
-        <div style={{ cursor: 'pointer' }} onClick={onClick}>
-            <p>{title}</p>
-        </div>
-    )
-}
+import { DropdownItemDlc } from "../../dlc/DropdownItemDlc";
 
 export function DropdownDlc() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -48,7 +40,7 @@ export function DropdownDlc() {
         <Dropdown
             parentRef={parentRef}
             isOpen={isDropdownOpen}
-            component={Component}
+            component={DropdownItemDlc}
             content={todos}
             onClick={onClickHandler}
             onSelect={onSelectHandler}

@@ -18,7 +18,7 @@ function App() {
               <h1>Auto complete me</h1>
                 <div className={commonStyle.Margin24} />
                 <div className="padding-wrapper__32">
-                    <div className="input-wrapper__500">
+                    <div className="width-wrapper__500">
                         <DropdownDlc />
                     </div>
                 </div>
