@@ -37,8 +37,20 @@
   }
 }
 
-.width-wrapper__500 {
-  width: 500px;
+.form-wrapper {
+  width: 60vw;
+}
+
+@media screen and (max-width: 600px) {
+  .form-wrapper {
+    width: 80vw;
+  }
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .padding-wrapper__32 {

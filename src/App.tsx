@@ -17,8 +17,9 @@ function App() {
             <TodosProvider value={contextValue}>
               <h1>Auto complete me</h1>
                 <div className={commonStyle.Margin24} />
-                <div className="padding-wrapper__32">
-                    <div className="width-wrapper__500">
+                <div className="padding-wrapper__32" />
+                <div className="flex-wrapper">
+                    <div className="form-wrapper">
                         <DropdownDlc />
                     </div>
                 </div>
