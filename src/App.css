@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.input-wrapper__500 {
+  width: 500px;
+}
+
+.padding-wrapper__32 {
+  padding: 32px;
+}
+
+.radio-selector__column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  align-items: self-start;
+}

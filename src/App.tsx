@@ -1,30 +1,32 @@
 import React from 'react';
 import './App.css';
+import { ICommonStyle } from './components/commin-style-types'
+
+import cs from './components/CommonStyle.module.css'
 
 import { AutoCompleteDlc } from './components/dlc/AutoCompleteDlc'
+
+const commonStyle = cs as unknown as ICommonStyle
 
 function App() {
   return (
     <div className="App">
       <h1>Auto complete me</h1>
-        <AutoCompleteDlc />
+        <div className={commonStyle.Margin24} />
+        <div className="padding-wrapper__32">
+            <div className="input-wrapper__500">
+                <AutoCompleteDlc />
+            </div>
+            {/*<div className={commonStyle.Margin24} />*/}
+            {/*<div className="radio-selector__column">*/}
+            {/*    <input type="radio" name="radio" />*/}
+            {/*    <input type="radio" name="radio" />*/}
+            {/*    <input type="radio" name="radio" />*/}
+            {/*    <input type="radio" name="radio" />*/}
+            {/*</div>*/}
+        </div>
     </div>
   );
 }
 
 export default App;
-
-// export const themes = {
-//     light: {
-//         '--color-background': '#1d2335',
-//         '--color-text': '#ffffff',
-//         '--color-accent': '#171725',
-//         '--color-form-background': '#171725',
-//     },
-//     dark: {
-//         '--color-background': '#ffffff',
-//         '--color-text': '#1d2335',
-//         '--color-accent': '#f1f1f5',
-//         '--color-form-background': '#ffffff'
-//     },
-// }

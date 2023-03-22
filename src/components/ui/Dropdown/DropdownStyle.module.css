@@ -1,0 +1,23 @@
+.Box {
+    width: 100%;
+    background-color: var(--color-background);
+    position: absolute;
+    display: none;
+
+    border: 1px solid var(--color-text-grey);
+    border-radius: 14px;
+    
+    padding: 12px 16px;
+    z-index: 1;
+    
+    max-height: 232px;
+    overflow: scroll;
+}
+
+.RelativeBlock {
+    position: relative;
+}
+
+.Visible {
+    display: block;
+}
