@@ -1,5 +1,3 @@
-import {PropsWithChildren} from "react";
-
 import { GenericDropdownItemProps } from "../../ui/Dropdown";
 
 export interface IDropdownItemProps {
