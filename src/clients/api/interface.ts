@@ -16,17 +16,18 @@ export interface IApiClient {
 }
 
 export interface GenericMSResponse<T> {
-    code: string
-    message: string
+    config: any
+    headers: any
     timestamp: string
     data: T | null
-    error: MSError | null
+    status: number
+    statusText: string
 }
-
-interface MSError {
-    message: string
-    code: string
-}
+//
+// interface MSError {
+//     message: string
+//     code: string
+// }
 
 export enum StatusCode {
     Unauthorized = 401,
