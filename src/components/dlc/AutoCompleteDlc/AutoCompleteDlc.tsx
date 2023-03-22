@@ -1,10 +1,9 @@
-import {useEffect, useRef, useState} from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
-import { Input } from '../../ui/Input'
 import { Dropdown, GenericDropdownItemProps } from '../../ui/Dropdown'
-import { ITodo } from "../../../store/todo/interface";
-import { apiClient } from "../../../clients/api";
-import {GenericMSResponse} from "@root/clients/api/interface";
+import { InputDlc } from "../InputDlc";
+import { TodosContext } from "../../../contexts/todos";
+import {ITodo} from "@store/todo/interface";
 
 function Component(props: GenericDropdownItemProps) {
     const { title, onClick } = props
@@ -17,52 +16,46 @@ function Component(props: GenericDropdownItemProps) {
 
 export function AutoCompleteDlc() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const [defaultDotos, setDefaultTodos] = useState<ITodo[]>([])
     const parentRef = useRef<HTMLDivElement>(null)
-    
-    useEffect(() => {
-        (async() => {
-            const todos = await apiClient.get<ITodo, GenericMSResponse<ITodo[]>>('todos')
-            if (todos.data?.length) {
-                setDefaultTodos(todos.data)
-            }
-        })()
-    }, [])
+    const { todos, setTodo, chosenTodo } = useContext(TodosContext)
 
     const onClickHandler = () => {
-        if (defaultDotos.length) {
+        if (todos.length) {
             setIsDropdownOpen((s) => !s)
         }
     }
 
-    const onSelectHandler = (e: any) => {
-        console.log(e)
-        setIsDropdownOpen(false)
+    const onSelectHandler = (todo: ITodo) => {
+        // Should not been closed manually 
+        // because it has closed by event listener
+        setTodo(todo)
     }
+
+    console.log(chosenTodo)
 
     // Outside click
     useEffect(() => {
         const handleClickOutside = (event: any) => {
             if (parentRef.current && !parentRef.current.contains(event.target)) {
-                onClickHandler && onClickHandler()
+                setIsDropdownOpen(false)
             }
         };
         document.addEventListener('click', handleClickOutside, true);
         return () => {
             document.removeEventListener('click', handleClickOutside, true);
         };
-    }, [ onClickHandler ]);
+    }, []);
 
     return (
         <Dropdown
             parentRef={parentRef}
             isOpen={isDropdownOpen}
             component={Component}
-            content={defaultDotos}
+            content={todos}
             onClick={onClickHandler}
             onSelect={onSelectHandler}
         >
-            <Input />
+            <InputDlc />
         </Dropdown>
     );
 }
