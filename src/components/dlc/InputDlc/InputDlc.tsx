@@ -8,7 +8,15 @@ import { TodosContext } from "../../../contexts/todos";
 import { useDebouncedCallback } from "../../../hooks/useDebounce";
 
 export function InputDlc() {
-    const { setTodos, setSearchString, searchString, todo, setTodo, setIsDropdownOpen, isDropdownOpen } = useContext(TodosContext)
+    const {
+        setTodos,
+        setSearchString,
+        searchString,
+        todo,
+        setTodo,
+        setIsDropdownOpen,
+        isDropdownOpen
+    } = useContext(TodosContext)
     const debounceDelay = 500
     
     const getTodos = async () => {

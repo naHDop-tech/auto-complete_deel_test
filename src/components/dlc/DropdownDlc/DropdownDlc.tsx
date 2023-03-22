@@ -1,4 +1,4 @@
-import {useCallback, useContext, useEffect, useRef, useState} from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 
 import { Dropdown } from '../../ui/Dropdown'
 import { InputDlc } from "../InputDlc";
@@ -8,7 +8,14 @@ import { DropdownItemDlc } from "../../dlc/DropdownItemDlc";
 
 export function DropdownDlc() {
     const parentRef = useRef<HTMLDivElement>(null)
-    const { todos, setTodo, isDropdownOpen, setIsDropdownOpen, todo, setTodos } = useContext(TodosContext)
+    const {
+        todos,
+        setTodo,
+        isDropdownOpen, 
+        setIsDropdownOpen,
+        todo,
+        setTodos
+    } = useContext(TodosContext)
 
     const onClickHandler = useCallback(() => {
         if (todos.length) {
