@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
-import { Dropdown, GenericDropdownItemProps } from '../../ui/Dropdown'
+import { Dropdown } from '../../ui/Dropdown'
 import { InputDlc } from "../InputDlc";
 import { TodosContext } from "../../../contexts/todos";
 import { ITodo } from "../../../store/todo/interface";

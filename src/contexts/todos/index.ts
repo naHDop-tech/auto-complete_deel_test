@@ -6,7 +6,7 @@ export interface ITodosContext {
     todos: ITodo[]
     todo: ITodo | null
     searchString: string
-    setTodo: (todo: ITodo) => void,
+    setTodo: (todo: ITodo | null) => void,
     setTodos: (data: ITodo[]) => void
     setSearchString: (str: string) => void
 }

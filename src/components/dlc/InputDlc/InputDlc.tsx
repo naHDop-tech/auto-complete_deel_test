@@ -5,10 +5,10 @@ import { apiClient } from "../../../clients/api";
 import { ITodo } from "../../../store/todo/interface";
 import { GenericMSResponse } from "../../../clients/api/interface";
 import { TodosContext } from "../../../contexts/todos";
-import { debounce } from "../../../utils/debounce";
+import { useDebouncedCallback } from "../../../hooks/useDebounce";
 
 export function InputDlc() {
-    const { setTodos, setSearchString, searchString, todo } = useContext(TodosContext)
+    const { setTodos, setSearchString, searchString, todo, setTodo } = useContext(TodosContext)
     const debounceDelay = 1000
     
     const getTodos = async () => {
@@ -22,23 +22,20 @@ export function InputDlc() {
         }
     }
 
-    const debouncedOnSearch = useMemo(() => {
-        if (debounceDelay > 0) {
-            return debounce(getTodos, debounceDelay)
-        }
-
-        return getTodos
-    }, [getTodos, debounceDelay])
+    const debouncedOnSearch = useDebouncedCallback(getTodos, debounceDelay)
 
     const changeHandler = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
+            if(todo?.title) {
+                setTodo(null)
+            }
             setSearchString(e.target.value)
             debouncedOnSearch()
         },
-        [searchString, debouncedOnSearch]
+        [searchString, debouncedOnSearch, todo]
     )
 
     return (
-        <Input onChange={changeHandler} />
+        <Input {...(todo?.title ? { value: todo.title} : { value: searchString })} onChange={changeHandler} />
     );
 }
