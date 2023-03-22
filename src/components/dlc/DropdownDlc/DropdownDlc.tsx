@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import {useCallback, useContext, useEffect, useRef, useState} from "react";
 
 import { Dropdown } from '../../ui/Dropdown'
 import { InputDlc } from "../InputDlc";
@@ -7,15 +7,17 @@ import { ITodo } from "../../../store/todo/interface";
 import { DropdownItemDlc } from "../../dlc/DropdownItemDlc";
 
 export function DropdownDlc() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const parentRef = useRef<HTMLDivElement>(null)
-    const { todos, setTodo } = useContext(TodosContext)
+    const { todos, setTodo, isDropdownOpen, setIsDropdownOpen, todo, setTodos } = useContext(TodosContext)
 
-    const onClickHandler = () => {
+    const onClickHandler = useCallback(() => {
         if (todos.length) {
+            if (todo) {
+                setTodos([todo])
+            }
             setIsDropdownOpen((s) => !s)
         }
-    }
+    }, [todo, todos])
 
     const onSelectHandler = (todo: ITodo) => {
         // Should not been closed manually 
