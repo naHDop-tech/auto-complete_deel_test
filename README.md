@@ -2,10 +2,14 @@
 
 Test task for the [Deel](https://www.deel.com/)
 
-Role: Frontend engineer
-Grade: Middle+/Senior
-Duration time: 90 minutes
-Due date: 48 h
+> Role: Frontend engineer
+
+> Grade: Middle+/Senior
+
+> Duration time: 90 minutes
+
+> Due time: 48 h
+
 
 # Description
 Please prepare an auto-complete component in React TypeScript.
