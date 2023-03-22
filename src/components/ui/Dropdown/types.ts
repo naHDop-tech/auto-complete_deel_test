@@ -1,7 +1,4 @@
 import { HTMLAttributes } from 'react'
+import { ITodo } from "@store/todo/interface";
 
-export interface IAdditionDropdownProps {
-    title: string
-}
-
-export type GenericDropdownItemProps = IAdditionDropdownProps & HTMLAttributes<HTMLDivElement>
+export type GenericDropdownItemProps = ITodo & Omit<HTMLAttributes<HTMLDivElement>, 'id'>

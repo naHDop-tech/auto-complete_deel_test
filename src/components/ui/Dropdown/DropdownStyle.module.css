@@ -5,6 +5,7 @@
     display: none;
 
     border: 1px solid var(--color-text-grey);
+    border-top: 0.1px solid var(--color-text-grey);
     border-radius: 14px;
     
     padding: 12px 16px;

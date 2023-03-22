@@ -1,7 +1,8 @@
-import { HTMLAttributes, PropsWithChildren, useState, useEffect, useRef } from 'react'
+import {HTMLAttributes, PropsWithChildren, useState, useEffect, useRef, RefObject} from 'react'
 
 import s from './DropdownStyle.module.css'
 import { GenericDropdownItemProps } from './types'
+import {ITodo} from "@store/todo/interface";
 
 const styles = s as unknown as IDropdownStyle
 
@@ -13,9 +14,10 @@ interface IDropdownStyle {
 
 interface IAdditionDropdownProps {
     isOpen: boolean
-    onSelect: (item: GenericDropdownItemProps) => void
-    content: GenericDropdownItemProps[]
+    onSelect: (item: ITodo) => void
+    content: ITodo[]
     component: (props: GenericDropdownItemProps) => JSX.Element
+    parentRef: RefObject<HTMLDivElement>
 }
 
 export type DropdownProps = IAdditionDropdownProps & Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'>
@@ -28,10 +30,10 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>) {
         isOpen,
         onSelect,
         children,
+        parentRef,
         ...rest
     } = props
     const [width, setWidth] = useState(0);
-    const parentRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if(parentRef.current?.clientWidth){
@@ -51,10 +53,13 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>) {
                 {children}
             </div>
             <div style={{ width }} className={bosClasses} {...rest}>
-                {content.map((item) => {
+                {content.map((item, idx) => {
                     return (
                         <Component
-                            key={item.title}
+                            completed={item.completed}
+                            id={item.id}
+                            userId={item.userId}
+                            key={idx}
                             title={item.title}
                             onClick={() => onSelect(item)}
                         />
