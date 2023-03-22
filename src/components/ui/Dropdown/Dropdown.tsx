@@ -53,7 +53,14 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>) {
                 {children}
             </div>
             <div style={{ width }} className={bosClasses} {...rest}>
-                {content.map((item, idx) => {
+                {content.length === 0 ? <Component
+                    completed
+                    id={0}
+                    userId={0}
+                    key={0}
+                    title="No rows"
+                    onClick={() => null}
+                /> : content.map((item, idx) => {
                     return (
                         <Component
                             completed={item.completed}

@@ -16,14 +16,12 @@ export function DropdownDlc() {
         todo,
         setTodos
     } = useContext(TodosContext)
-
+ 
     const onClickHandler = useCallback(() => {
-        if (todos.length) {
-            if (todo) {
-                setTodos([todo])
-            }
-            setIsDropdownOpen((s) => !s)
+        if (todo) {
+            setTodos([todo])
         }
+        setIsDropdownOpen((s) => !s)
     }, [todo, todos])
 
     const onSelectHandler = (todo: ITodo) => {

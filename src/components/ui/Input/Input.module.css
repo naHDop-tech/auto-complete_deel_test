@@ -29,6 +29,7 @@
 }
 
 .Label {
+    text-align: left;
     display: block;
     margin-bottom: 10px;
 }

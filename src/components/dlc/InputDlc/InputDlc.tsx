@@ -15,7 +15,7 @@ export function InputDlc() {
         todo,
         setTodo,
         setIsDropdownOpen,
-        isDropdownOpen
+        isDropdownOpen,
     } = useContext(TodosContext)
     const debounceDelay = 500
     
@@ -50,6 +50,13 @@ export function InputDlc() {
     )
 
     return (
-        <Input {...(todo?.title ? { value: todo.title } : { value: searchString })} onChange={changeHandler} />
+        <Input
+            label="Input text for searching"
+            placeholder="Typing i.e. 'delectus...'"
+            {
+                ...(todo?.title ? { value: todo.title } : { value: searchString })
+            }
+            onChange={changeHandler}
+        />
     );
 }
