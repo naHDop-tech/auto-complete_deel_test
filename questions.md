@@ -68,20 +68,31 @@ class Counter1 extends Component<MyComponentProps, MyComponentState> {
    }
 }
 ```
-3. You can pass using props direct or parent
+3. You can pass it with props direct or parent
 ```tsx
+// Direct
 function Parent() {
     const [stateStr, setStateStr] = useState("Hello Deel")
     // ...
    return <Child title={stateStr} />
 }
-
 function Child(props) {
     const { title } = props
     return <h1>{title}</h1>
 }
+
+// with Parent
+function Parent() {
+   const [stateStr, setStateStr] = useState("Hello Deel")
+   // ...
+   return <Child>{stateStr}</Child>
+}
+function Child(props) {
+   const { children } = props
+   return <h1>{children}</h1>
+}
 ```
-You can using global state manager.
+You can use global state manager like the `redux` for example.
 ```tsx
 function Parent() {
     const dispatch = useDispatch()
@@ -97,7 +108,7 @@ function Child(props) {
     return <h1>{stateStr}</h1>
 }
 ```
-You can using HOC pattern
+You can use HOC pattern with local or global state
 ```tsx
 export const withStateStr = (Component: (props: { title: string }) => JSX.Element) => () => {
    const stateStr = useSelector((state: string) => state)
@@ -113,5 +124,98 @@ function App() {
 function Child(props) {
    const { title } = props
    return <h1>{title}</h1>
+}
+```
+4. More common way to wrap component with `memo` (memoized)
+```tsx
+//before
+function Parent() {
+   const [stateStr, setStateStr] = useState("Hello Deel")
+   // ...
+   return (
+       <div onScroll={(e) => setStateStr(e.target.value)}>
+        {/*  re render each scroll*/}
+        <Child />
+       </div>
+   )
+}
+function Child() {
+   return <h1>Hello</h1>
+}
+
+//after
+const MemoizChild = memo(Child)
+function Parent() {
+   const [stateStr, setStateStr] = useState("Hello Deel")
+   // ...
+   return (
+       <div onScroll={(e) => setStateStr(e.target.value)}>
+          <MemoizChild />
+       </div>
+   )
+}
+
+function Child() {
+   return <h1>Hello</h1>
+}
+```
+you can use closure (HOK or just using extra layer (component))
+```tsx
+//after
+function Parent({ children }) {
+   const [stateStr, setStateStr] = useState("Hello Deel")
+   // ...
+   return (
+       <div onScroll={(e) => setStateStr(e.target.value)}>
+          {children}
+       </div>
+   )
+}
+
+function Child() {
+   return <h1>Hello</h1>
+}
+
+function ExtraComponent() {
+   return (
+       <Parent>
+          <Child />
+       </Parent>
+   )
+}
+```
+5. fragment is special component in react.
+It using if you don't need wrapped some component to html tag
+you can use it with `import { Fragment } from 'react'` or just empty tags `<></>`
+```tsx
+function Component(props) {
+    const { list } = props
+   
+   return (
+       <>
+          {list.map((el) => {
+             return (
+                 <div>{el.title}</div>
+             )
+          })}
+       </>
+   )
+}
+```
+It can broke application (not at all :) if you using it with map because you should pass `key` props to root element
+```tsx
+function Component(props) {
+    const { list } = props
+
+   return bar.map((el) => {
+      return (
+          // here should be an html element with key prop: <div key={idx}>
+          // also key prop should be uniq!
+          <>
+             <p>{el.title}</p>
+             <p>{el.name}</p>
+          </>
+      )
+   })
 }
 ```
