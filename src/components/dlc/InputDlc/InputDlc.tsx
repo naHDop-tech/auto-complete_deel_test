@@ -6,7 +6,6 @@ import { ITodo } from "../../../store/todo/interface";
 import { GenericMSResponse } from "../../../clients/api/interface";
 import { TodosContext } from "../../../contexts/todos";
 import { useDebouncedCallback } from "../../../hooks/useDebounce";
-import {AxiosError} from "axios";
 
 export function InputDlc() {
     const {
@@ -23,15 +22,16 @@ export function InputDlc() {
     const debounceDelay = 500
     
     const getTodos = async () => {
-        // If you have limit filter a.k.a pagination
-        // You can request first 10 and after that 
-        // sent requests with filter and more pagination range
         if (isDropdownOpen) {
             setIsDropdownOpen(true)
         }
         try {
+            // If you have limit filter a.k.a pagination
+            // You can request first 10 and after that 
+            // send new requests with filter and more pagination range
             const todos = await apiClient.get<ITodo, GenericMSResponse<ITodo[]>>('todos')
             if (todos.data?.length) {
+                // Usually this logic on server side
                 const filteredTodos = todos.data.filter((t) => t.title.includes(searchString))
                 setTodos(filteredTodos)
             }
@@ -49,13 +49,20 @@ export function InputDlc() {
             if(todo?.title) {
                 setTodo(null)
             }
-            if (isDropdownOpen) {
+            if (!isDropdownOpen) {
                 setIsDropdownOpen(true)
             }
             setSearchString(e.target.value)
             debouncedOnSearch()
         },
-        [searchString, debouncedOnSearch, todo, isDropdownOpen]
+        [
+            debouncedOnSearch,
+            todo,
+            isDropdownOpen,
+            setIsDropdownOpen,
+            setSearchString,
+            setTodo,
+        ]
     )
 
     return (

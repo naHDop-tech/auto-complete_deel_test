@@ -1,4 +1,4 @@
-import { HTMLAttributes, PropsWithChildren, useState, useEffect, RefObject } from 'react'
+import { HTMLAttributes, PropsWithChildren, RefObject } from 'react'
 
 import s from './DropdownStyle.module.css'
 import { GenericDropdownItemProps } from './types'

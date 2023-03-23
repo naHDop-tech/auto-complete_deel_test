@@ -27,7 +27,7 @@ export function DropdownDlc() {
 
     const onSelectHandler = (todo: ITodo) => {
         // Should not been closed manually 
-        // because it has closed by event listener
+        // Because it has closed by event listener
         setTodo(todo)
         setSearchString(todo.title)
     }
