@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse, AxiosInstance, AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios'
 
-import { StatusCode, IApiClient } from '../api/interface'
+import { StatusCode, IApiClient } from '@root/clients/api/interface'
 
 const headers: Readonly<Record<string, string | boolean>> = {
     Accept: "application/json",

@@ -1,11 +1,11 @@
 import './App.css';
-import { ICommonStyle } from './components/commin-style-types'
+import { ICommonStyle } from '@components/commin-style-types'
 
-import cs from './components/CommonStyle.module.css'
+import cs from '@components/CommonStyle.module.css'
 
-import { DropdownDlc } from './components/dlc/DropdownDlc'
+import { DropdownDlc } from '@components/dlc/DropdownDlc'
 import { TodosProvider } from './contexts/todos'
-import { useTodoStore } from "./store/todo/useTodoStore";
+import { useTodoStore } from "@store/todo/useTodoStore";
 
 const commonStyle = cs as unknown as ICommonStyle
 

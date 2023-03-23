@@ -1,10 +1,10 @@
 import { useCallback, useContext, useEffect, useRef } from "react";
 
-import { Dropdown } from '../../ui/Dropdown'
-import { InputDlc } from "../InputDlc";
-import { TodosContext } from "../../../contexts/todos";
-import { ITodo } from "../../../store/todo/interface";
-import { DropdownItemDlc } from "../../dlc/DropdownItemDlc";
+import { Dropdown } from '@components/ui/Dropdown'
+import { InputDlc } from "@components/dlc/InputDlc";
+import { TodosContext } from "@root/contexts/todos";
+import { ITodo } from "@store/todo/interface";
+import { DropdownItemDlc } from "@components/dlc/DropdownItemDlc";
 
 export function DropdownDlc() {
     const parentRef = useRef<HTMLDivElement>(null)

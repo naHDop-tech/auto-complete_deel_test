@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { DropdownItem } from "../../ui/DropdownItem";
-import { GenericDropdownItemProps } from "../../ui/Dropdown";
-import { TodosContext } from "../../../contexts/todos";
+
+import { DropdownItem } from "@components/ui/DropdownItem";
+import { GenericDropdownItemProps } from "@components/ui/Dropdown";
+import { TodosContext } from "@root/contexts/todos";
 
 export function DropdownItemDlc(props: GenericDropdownItemProps) {
     const { searchString } = useContext(TodosContext)

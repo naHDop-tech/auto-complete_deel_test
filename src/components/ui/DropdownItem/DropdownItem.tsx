@@ -1,4 +1,4 @@
-import { GenericDropdownItemProps } from "../../ui/Dropdown";
+import { GenericDropdownItemProps } from "@components/ui/Dropdown";
 
 export interface IDropdownItemProps {
     searchString: string

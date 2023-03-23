@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
 
-import { ITodo } from "../../store/todo/interface";
+import { ITodo } from "@store/todo/interface";
 
 export interface ITodosContext {
     isDropdownOpen: boolean
