@@ -278,3 +278,41 @@ function Component() {
    )
 }
 ```
+8. `setState` takes 1 param but it can be or NEW state value or callback fn.
+```tsx
+// new state
+function Component() {
+    const [title, setTitle] = useState('')
+    
+   const changeHandler = (e) => {
+      setTitle(e.target.value)
+   }
+   return <input onChange={changeHandler}/>
+}
+// callback
+function Component() {
+   const [isChousen, setIsChousen] = useState(false)
+
+   const clickHandler = () => {
+      setTitle((prev) => !prev)
+   }
+   return <button onClick={clickHandler} />
+}
+```
+this is async operation because React should rebuild virtual DOM and make re-render component
+9. List to migrate Class -> function
+- create fn component
+- replace local/global state/types to fn component
+- replace main logic to fn component
+- replace render logic to fn component bt use `useEffect`/`useCallback`/`useMemo` hooks
+- or split it to several fn components
+10. styles using
+- Using classic way pure css from file
+- using preprocessors `Saas/Less`
+- using post processors libs like `Tailwind`
+- using css in js like styled-component
+- also you can use direct styles (not recomended)
+11. by using JS
+```js
+document.write('<html><body><h2>HTML</h2></body></html>');
+```
