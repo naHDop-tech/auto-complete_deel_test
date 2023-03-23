@@ -291,12 +291,12 @@ function Component() {
 }
 // callback
 function Component() {
-   const [isChousen, setIsChousen] = useState(false)
+   const [isChosen, setIsChosen] = useState(false)
 
    const clickHandler = () => {
-      setTitle((prev) => !prev)
+      setIsChosen((prev) => !prev)
    }
-   return <button onClick={clickHandler} />
+   return <button onClick={clickHandler}>Change it</button>
 }
 ```
 this is async operation because React should rebuild virtual DOM and make re-render component - it  takes some time
