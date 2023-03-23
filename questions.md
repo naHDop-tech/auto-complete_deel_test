@@ -219,7 +219,7 @@ function Component(props) {
    })
 }
 ```
-6. answer me later
+6. ------------- :c ---------------
 7. In callback it's going to callback hell
 ```js
 firstAsync((data, error) => {
@@ -242,7 +242,7 @@ someAsyncCall()
         console.log(parsedData.title)
     })
     .catch((err) => {
-        // only one catch in this cain
+        // only one catch in this chain
         connsole.error(err.message)
     })
 ```
@@ -299,7 +299,7 @@ function Component() {
    return <button onClick={clickHandler} />
 }
 ```
-this is async operation because React should rebuild virtual DOM and make re-render component
+this is async operation because React should rebuild virtual DOM and make re-render component - it  takes some time
 9. List to migrate Class -> function
 - create fn component
 - replace local/global state/types to fn component
