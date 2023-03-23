@@ -37,7 +37,11 @@ include comments on what needs to be changed for production.
 Results need to be in the form of a GitHub repo link.
 
 
-# How to Start application
+# How to Start
 ```bash
 npm run start
+```
+# How to build
+```bash
+napm run build
 ```
