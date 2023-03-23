@@ -45,3 +45,6 @@ npm run start
 ```bash
 napm run build
 ```
+
+# API
+I'm using "Todo" model from free mock api. Visit [JSON placeholder](https://jsonplaceholder.typicode.com) site for more information
