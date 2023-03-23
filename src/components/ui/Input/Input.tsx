@@ -17,7 +17,7 @@ interface IInputStyle {
 
 interface IInputProps {
     label?: string
-    errorText?: string
+    errorText?: string | null
 }
 
 export type InputProps = IInputProps & InputHTMLAttributes<HTMLInputElement>

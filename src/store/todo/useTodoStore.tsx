@@ -8,8 +8,10 @@ export function useTodoStore(): ITodosContext {
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
     const [todo, setTodo] = useState<ITodo | null>(null)
     const [searchString, setSearchString] = useState<string>('')
+    const [serverError, setServerError] = useState<string | null>(null)
 
     return {
+        serverError,
         isDropdownOpen,
         setTodo,
         todo,
@@ -18,5 +20,6 @@ export function useTodoStore(): ITodosContext {
         setTodos,
         setSearchString,
         setIsDropdownOpen,
+        setServerError,
     }
 }

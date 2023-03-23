@@ -33,18 +33,11 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>) {
         parentRef,
         ...rest
     } = props
-    const [width, setWidth] = useState(0);
-
-    useEffect(() => {
-        if(parentRef.current?.clientWidth){
-            setWidth(parentRef.current.offsetWidth)
-        }
-    }, [parentRef, parentRef.current?.clientWidth]);
     
-    let bosClasses = styles.Box
+    let boxClasses = styles.Box
     
     if (isOpen) {
-        bosClasses += ' ' + styles.Visible
+        boxClasses += ' ' + styles.Visible
     }
 
     return (
@@ -52,7 +45,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>) {
             <div ref={parentRef} onClick={onClick} className={styles.RelativeBlock}>
                 {children}
             </div>
-            <div style={{ width }} className={bosClasses} {...rest}>
+            <div className={`${boxClasses} dropdown-context-menu`} {...rest}>
                 {content.length === 0 ? <Component
                     completed
                     id={0}

@@ -6,6 +6,7 @@ import { ITodo } from "../../../store/todo/interface";
 import { GenericMSResponse } from "../../../clients/api/interface";
 import { TodosContext } from "../../../contexts/todos";
 import { useDebouncedCallback } from "../../../hooks/useDebounce";
+import {AxiosError} from "axios";
 
 export function InputDlc() {
     const {
@@ -16,6 +17,8 @@ export function InputDlc() {
         setTodo,
         setIsDropdownOpen,
         isDropdownOpen,
+        setServerError,
+        serverError,
     } = useContext(TodosContext)
     const debounceDelay = 500
     
@@ -26,10 +29,16 @@ export function InputDlc() {
         if (isDropdownOpen) {
             setIsDropdownOpen(true)
         }
-        const todos = await apiClient.get<ITodo, GenericMSResponse<ITodo[]>>('todos')
-        if (todos.data?.length) {
-            const filteredTodos = todos.data.filter((t) => t.title.includes(searchString))
-            setTodos(filteredTodos)
+        try {
+            const todos = await apiClient.get<ITodo, GenericMSResponse<ITodo[]>>('todos')
+            if (todos.data?.length) {
+                const filteredTodos = todos.data.filter((t) => t.title.includes(searchString))
+                setTodos(filteredTodos)
+            }
+            setServerError(null)
+        } catch {
+            setServerError("Serverside failed")
+            setIsDropdownOpen(false)
         }
     }
 
@@ -51,6 +60,7 @@ export function InputDlc() {
 
     return (
         <Input
+            errorText={serverError}
             label="Input text for searching"
             placeholder="Typing i.e. 'delectus...'"
             {

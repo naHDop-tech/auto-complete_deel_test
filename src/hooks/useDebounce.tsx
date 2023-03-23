@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 
 export function useDebouncedCallback<A extends any[]>(
+    // Optional param
     callback: (...args: A) => void,
-    wait: number
+    waitDuration: number
 ) {
     // track args & timeout handle between calls
     const argsRef = useRef<A>();
@@ -19,6 +20,7 @@ export function useDebouncedCallback<A extends any[]>(
     useEffect(() => cleanup, []);
 
     return function debouncedCallback(
+        // Optional param
         ...args: A
     ) {
         // capture latest args
@@ -32,6 +34,6 @@ export function useDebouncedCallback<A extends any[]>(
             if(argsRef.current) {
                 callback(...argsRef.current);
             }
-        }, wait);
+        }, waitDuration);
     };
 }

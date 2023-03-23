@@ -13,6 +13,7 @@ export function DropdownDlc() {
         setTodo,
         isDropdownOpen, 
         setIsDropdownOpen,
+        setSearchString,
         todo,
         setTodos
     } = useContext(TodosContext)
@@ -22,12 +23,13 @@ export function DropdownDlc() {
             setTodos([todo])
         }
         setIsDropdownOpen((s) => !s)
-    }, [todo, todos])
+    }, [todo, setIsDropdownOpen, setTodos])
 
     const onSelectHandler = (todo: ITodo) => {
         // Should not been closed manually 
         // because it has closed by event listener
         setTodo(todo)
+        setSearchString(todo.title)
     }
 
     // Outside click
@@ -41,7 +43,7 @@ export function DropdownDlc() {
         return () => {
             document.removeEventListener('click', handleClickOutside, true);
         };
-    }, []);
+    }, [setIsDropdownOpen]);
 
     return (
         <Dropdown

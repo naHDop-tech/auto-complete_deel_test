@@ -9,12 +9,12 @@ function DynamicBoldText({ text, shouldBeBold }: {text: string, shouldBeBold: st
     return (
         <span>
              {textArray.map((item, index) => (
-                  <>
+                  <span key={index}>
                       {item}
                       {index !== textArray.length - 1 && (
                           <b>{shouldBeBold}</b>
                       )}
-                  </>
+                  </span>
              ))}
         </span>
     );

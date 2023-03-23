@@ -41,8 +41,16 @@
   width: 60vw;
 }
 
+.form-wrapper .dropdown-context-menu {
+  width: 60vw;
+}
+
 @media screen and (max-width: 600px) {
   .form-wrapper {
+    width: 80vw;
+  }
+
+  .form-wrapper .dropdown-context-menu {
     width: 80vw;
   }
 }

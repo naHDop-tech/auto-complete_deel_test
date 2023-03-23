@@ -11,6 +11,9 @@ export interface ITodosContext {
     setTodos: Dispatch<SetStateAction<ITodo[]>>
     setSearchString: Dispatch<SetStateAction<string>>
     setIsDropdownOpen: Dispatch<SetStateAction<boolean>>
+    
+    serverError: string | null
+    setServerError: (err: string | null) => void
 }
 
 export const TodosContext = createContext<ITodosContext>({
@@ -18,9 +21,11 @@ export const TodosContext = createContext<ITodosContext>({
     todos: [],
     searchString: '',
     todo: null,
+    serverError: null,
     setTodos: () => [],
     setSearchString: () => '',
     setTodo: () => null,
-    setIsDropdownOpen: () => null
+    setIsDropdownOpen: () => null,
+    setServerError: () => null
 })
 export const TodosProvider = TodosContext.Provider
