@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useMemo, useState} from "react";
 
 import { ITodosContext } from "@root/contexts/todos";
 import { ITodo } from "@store/todo/interface";
@@ -9,8 +9,23 @@ export function useTodoStore(): ITodosContext {
     const [todo, setTodo] = useState<ITodo | null>(null)
     const [searchString, setSearchString] = useState<string>('')
     const [serverError, setServerError] = useState<string | null>(null)
-
-    return {
+    
+    // Avoid re-render inside component
+    // which are using context
+    return useMemo(() => {
+        return {
+            serverError,
+            isDropdownOpen,
+            setTodo,
+            todo,
+            todos,
+            searchString,
+            setTodos,
+            setSearchString,
+            setIsDropdownOpen,
+            setServerError,
+        }
+    }, [
         serverError,
         isDropdownOpen,
         setTodo,
@@ -21,5 +36,5 @@ export function useTodoStore(): ITodosContext {
         setSearchString,
         setIsDropdownOpen,
         setServerError,
-    }
+    ])
 }
