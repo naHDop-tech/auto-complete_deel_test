@@ -219,3 +219,62 @@ function Component(props) {
    })
 }
 ```
+6. answer me later
+7. In callback it's going to callback hell
+```js
+firstAsync((data, error) => {
+    if (!error) {
+        secontAsync((data, error) => {
+            // ...
+        })
+    }
+})
+```
+in chain operators you can have several cases and you probably want to know which case had failed
+```js
+someAsyncCall()
+    .then((data) => {
+        if (typeof data.json === 'function') {
+            return data.json()
+        }
+    })
+    .then((parsedData) => {
+        console.log(parsedData.title)
+    })
+    .catch((err) => {
+        // only one catch in this cain
+        connsole.error(err.message)
+    })
+```
+in async await you can take all under control but it might be extra code in react component
+because you can always call it inside async function mark
+```tsx
+function Component() {
+    const [todo, setTodo] = useState({})
+    const [serverErrror, setServerError] = useState('')
+   
+   useEffect(() => {
+       // extra lambda function
+      (async() => {
+          try {
+             const data = await callApi('/todo')
+             setTodo(data)
+          } catch (err) {
+             setServerError(err.message)
+          }
+      })()
+   }, [])
+   
+   if (serverErrror.length) {
+      return <h1>{serverErrror}</h1>
+   }
+   
+   return (
+       <>
+          <p>{todo.title}</p>
+          <p>{todo.dueDate}</p>
+          <p>{todo.isDone}</p>
+       </>
+   )
+}
+```
