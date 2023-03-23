@@ -7,7 +7,7 @@ export interface IDropdownItemProps {
 function DynamicBoldText({ text, shouldBeBold }: {text: string, shouldBeBold: string}) {
     const textArray = text.split(shouldBeBold);
     return (
-        <span>
+        <>
              {textArray.map((item, index) => (
                   <span key={index}>
                       {item}
@@ -16,7 +16,7 @@ function DynamicBoldText({ text, shouldBeBold }: {text: string, shouldBeBold: st
                       )}
                   </span>
              ))}
-        </span>
+        </>
     );
 }
 
@@ -24,7 +24,7 @@ export function DropdownItem(props: GenericDropdownItemProps & IDropdownItemProp
     const { title, onClick, searchString } = props
 
     return (
-        <div style={{ cursor: 'pointer', fontWeight: 200 }} onClick={onClick}>
+        <div style={{ padding: '6px 0', borderTop: '0.2px solid rgba(255,255,255, 0.1)', cursor: 'pointer', fontWeight: 200 }} onClick={onClick}>
             <DynamicBoldText text={title} shouldBeBold={searchString}/>
         </div>
     )

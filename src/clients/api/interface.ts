@@ -23,11 +23,6 @@ export interface GenericMSResponse<T> {
     status: number
     statusText: string
 }
-//
-// interface MSError {
-//     message: string
-//     code: string
-// }
 
 export enum StatusCode {
     Unauthorized = 401,
