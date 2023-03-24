@@ -193,9 +193,9 @@ function Component(props) {
    
    return (
        <>
-          {list.map((el) => {
+          {list.map((el, idx) => {
              return (
-                 <div>{el.title}</div>
+                 <div key={idx}>{el.title}</div>
              )
           })}
        </>
