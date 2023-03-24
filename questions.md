@@ -100,7 +100,7 @@ function Parent() {
        dispatch(setStateStr("Hello Deel"))
     }, [])
     // ...
-   return <Child title={stateStr} />
+   return <Child />
 }
 
 function Child(props) {
